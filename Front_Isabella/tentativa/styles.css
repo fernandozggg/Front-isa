@@ -1,56 +1,100 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
 
+/* Cabeçalho */
 header {
-    background-image: url('imagens/flor.png');
-    background-size: cover;
-    background-position: center;
-    color: #f4f4f4;
-    padding: 30px 0;
     text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, #000, #333);
+    color: white;
 }
 
-nav {
+/* Navbar com cor clara (#eaeeef) */
+.navbar {
     display: flex;
-    justify-content: center;
-    background-color: #990000;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #eaeeef; /* Nova cor do fundo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais sutil */
 }
-nav a {
-    color: #fff;
-    padding: 15px;
-    text-decoration: none;
+
+.navbar .logo a {
+    font-size: 24px;
     font-weight: bold;
+    color: #333; /* Contraste com o fundo */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+.navbar .logo a:hover {
+    color: #0070f3; /* Efeito de hover no logo */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: #333; /* Texto escuro para contraste */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
 
 .carousel-container {
     position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
+    width: 60%; /* Reduzi a largura para 60% da página */
+    height: 300px; /* Defini uma altura fixa */
+    margin: 20px auto;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    height: 100%; /* Garante que ocupe 100% da altura do container */
 }
 
 .carousel img {
-    flex-shrink: 0;
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: 100%; /* As imagens ocuparão toda a altura do carrossel */
+    flex-shrink: 0;
+    object-fit: cover; /* Ajusta as imagens sem distorção */
+    display: block;
 }
 
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
-    font-size: 24px;
     z-index: 10;
 }
 
@@ -62,39 +106,102 @@ nav a {
     right: 10px;
 }
 
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
 
+
+/* Filtros */
 .filters {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     padding: 20px;
-    background-color: #eee;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.filter { display: flex; flex-direction: column; }
 
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.filter label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.filter select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.filter select:hover {
+    border-color: #0070f3;
+    background-color: #f0f8ff;
+}
+
+.filter select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
+    border-color: #0070f3;
+}
+
+/* Cartões de Tênis */
 .sneakers {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
     padding: 20px;
 }
-.sneaker {
-    background-color: #fff;
-    width: 200px;
-    margin: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    display: block;
-}
-.sneaker img { width: 100%; height: auto; }
 
-footer {
-    background-color: #990000;
-    color: #fff;
+.sneaker {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    font-size: 0.9em;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sneaker:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.sneaker img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.sneaker button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sneaker button:hover {
+    background-color: #0070f3;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+    color: white;
 }
