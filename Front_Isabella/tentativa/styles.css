@@ -59,42 +59,110 @@ header {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
-
 /* Contêiner do Carrossel */
 .carousel-container {
     position: relative;
     width: 100%; /* Largura total */
-    max-width: 900px; /* Largura máxima do carrossel */
-    height: calc(900px * 2 / 3); /* Calcula altura proporcional (3:2) */
+    max-width: 520px; /* Largura máxima do carrossel */
+    height: calc(380px * 2 / 3); /* Calcula altura proporcional (3:2) */
     overflow: hidden; /* Esconde partes da imagem que saem do contêiner */
     margin: 20px auto; /* Centraliza horizontalmente */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    background: #f9f9f9; /* Fundo para imagens carregando */
 }
 
 /* Faixa do Carrossel */
 .carousel {
-    display: flex; /* Imagens lado a lado */
+    display: flex; /* Torna as imagens flexíveis */
     height: 100%; /* Alinha à altura do contêiner */
     transition: transform 0.5s ease-in-out; /* Animação suave ao deslizar */
+    gap: 20px; /* Espaçamento entre imagens */
+    padding: 0 10px; /* Espaçamento interno para conter o `gap` */
+    box-sizing: border-box; /* Inclui o padding no tamanho total */
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
 }
 
 /* Imagens no Carrossel */
 .carousel img {
-    width: 100%; /* Largura total do contêiner */
-    height: 100%; /* Altura total do contêiner */
-    object-fit: cover; /* Mantém a proporção e preenche o espaço */
-    border-radius: 10px; /* Bordas arredondadas (opcional) */
+    flex: 0 0 100%; /* Ajusta para preencher a largura total do carrossel */
+    height: 100%; /* Preenche a altura do contêiner */
+    object-fit: cover; /* A imagem preenche sem deformar */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Destaque para cada imagem */
 }
+
+/* Botões de Navegação */
+.carousel-container .nav-button {
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta para que fiquem no centro vertical */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10; /* Garante que os botões fiquem sobre as imagens */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Tamanho do ícone */
+}
+
+/* Botão da esquerda */
+.carousel-container .nav-button.left {
+    left: 10px; /* Afastado da borda esquerda */
+}
+
+/* Botão da direita */
+.carousel-container .nav-button.right {
+    right: 10px; /* Afastado da borda direita */
+}
+
+
+
+/* Indicadores do Carrossel */
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.carousel-indicators div {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5); /* Fundo semitransparente */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-indicators div.active {
+    background-color: white; /* Destaque para o indicador ativo */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Efeito de brilho */
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .carousel-container {
-        max-width: 100%; /* Ajusta à largura da tela */
-        height: calc(100vw * 2 / 3); /* Calcula a altura proporcional */
+    /* Responsividade: Ajuste de botões em telas menores */
+@media (max-width: 768px) {
+    .carousel-container .nav-button {
+        width: 30px; /* Reduz o tamanho do botão */
+        height: 30px;
+        font-size: 18px; /* Diminui o tamanho do ícone */
     }
 }
-
-
+    .carousel img {
+        flex: 0 0 100%; /* Ajusta para largura total em telas menores */
+        object-fit: contain; /* Ajusta para evitar cortes em telas menores */
+    }
+}
 
 /* Filtros */
 .filters {

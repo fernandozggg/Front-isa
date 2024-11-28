@@ -76,13 +76,16 @@ function showSlide(index) {
     const slides = carousel.querySelectorAll('img');
     if (slides.length === 0) return;
 
+    // Atualiza o índice para garantir que o carrossel fique dentro do intervalo de imagens
     if (index >= slides.length) currentIndex = 0;
     else if (index < 0) currentIndex = slides.length - 1;
     else currentIndex = index;
 
+    // Calcula o deslocamento baseado no índice
     const offset = -currentIndex * 100;
-    carousel.style.transform = `translateX(${offset}%)`;
+    carousel.style.transform = `translateX(${offset}%)`; // Move o carrossel
 }
+
 
 function nextSlide() {
     showSlide(currentIndex + 1);
@@ -94,3 +97,21 @@ function prevSlide() {
 
 // Chamar a função consumirAPI após o carregamento da página
 window.addEventListener('DOMContentLoaded', consumirAPI(console.data));
+
+// Função para mover para o slide anterior
+function moveLeft() {
+    showSlide(currentIndex - 1); // Chama a função showSlide com índice decrementado
+}
+
+// Função para mover para o slide seguinte
+function moveRight() {
+    showSlide(currentIndex + 1); // Chama a função showSlide com índice incrementado
+}
+
+// Seleciona os botões de navegação
+const leftButton = document.querySelector('.nav-button.left');
+const rightButton = document.querySelector('.nav-button.right');
+
+// Adiciona ouvintes de evento para os botões
+leftButton.addEventListener('click', moveLeft);
+rightButton.addEventListener('click', moveRight);
