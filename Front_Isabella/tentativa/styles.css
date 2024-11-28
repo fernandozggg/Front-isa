@@ -61,53 +61,39 @@ header {
 
 
 
+/* Contêiner do Carrossel */
 .carousel-container {
     position: relative;
-    width: 60%; /* Reduzi a largura para 60% da página */
-    height: 300px; /* Defini uma altura fixa */
-    margin: 20px auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Largura total */
+    max-width: 900px; /* Largura máxima do carrossel */
+    height: calc(900px * 2 / 3); /* Calcula altura proporcional (3:2) */
+    overflow: hidden; /* Esconde partes da imagem que saem do contêiner */
+    margin: 20px auto; /* Centraliza horizontalmente */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
 }
 
+/* Faixa do Carrossel */
 .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    height: 100%; /* Garante que ocupe 100% da altura do container */
+    display: flex; /* Imagens lado a lado */
+    height: 100%; /* Alinha à altura do contêiner */
+    transition: transform 0.5s ease-in-out; /* Animação suave ao deslizar */
 }
 
+/* Imagens no Carrossel */
 .carousel img {
-    width: 100%;
-    height: 100%; /* As imagens ocuparão toda a altura do carrossel */
-    flex-shrink: 0;
-    object-fit: cover; /* Ajusta as imagens sem distorção */
-    display: block;
+    width: 100%; /* Largura total do contêiner */
+    height: 100%; /* Altura total do contêiner */
+    object-fit: cover; /* Mantém a proporção e preenche o espaço */
+    border-radius: 10px; /* Bordas arredondadas (opcional) */
+}
+@media (max-width: 768px) {
+    .carousel-container {
+        max-width: 100%; /* Ajusta à largura da tela */
+        height: calc(100vw * 2 / 3); /* Calcula a altura proporcional */
+    }
 }
 
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.carousel-btn.left {
-    left: 10px;
-}
-
-.carousel-btn.right {
-    right: 10px;
-}
-
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
 
 
 /* Filtros */

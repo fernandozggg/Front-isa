@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adidas - Loja de Tênis</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="implementacao.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="implementacao.js" defer></script> <!-- Agora usando apenas script.js -->
 </head>
 <body>
     <header>
@@ -23,18 +22,6 @@
             <li><a href="#">Contato</a></li>
         </ul>
     </nav>
-    <!-- Carrossel de Imagens -->
-    <div class="carousel-container">
-        <div class="carousel">
-            <img src="imagens/Tenis1.avif">
-            <img src="imagens/tenis2.jpg">
-            <img src="imagens/tenis3.avif">
-            <img src="imagens/tenis4.avif">
-            <img src="imagens/tenis5.avif">
-        </div>
-        <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
-        <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
-    </div>
 
     <!-- Filtros -->
     <section class="filters">
@@ -76,6 +63,14 @@
         </div>
     </section>
 
+    <!-- Carrossel -->
+    <section class="carousel-container">
+        <div class="carousel">
+            <!-- As imagens do carrossel serão inseridas dinamicamente aqui -->
+            <!-- <img src="http..." alt="..." style="width: jhjhj; hdwkjh"></img> -->
+        </div>
+    </section>
+
     <!-- Seção de Tênis -->
     <section class="sneakers">
         <div class="sneaker" data-model="samba" data-size="38" data-color="branco">
@@ -96,7 +91,7 @@
             <p>R$ 599,90</p>
             <button>Comprar</button>
         </div>
-    </section> 
+    </section>
 
 </body>
 </html>

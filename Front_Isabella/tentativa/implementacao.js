@@ -1,3 +1,4 @@
+// Função para consumir a API e preencher o carrossel
 async function consumirAPI() {
     console.log("Consumindo API...");
     try {
@@ -26,18 +27,18 @@ async function consumirAPI() {
         // Limpar o carrossel antes de adicionar novas imagens
         carousel.innerHTML = '';
 
-        // Adicionar a imagem principal e as imagens de cores ao carrossel
-        if (data.image_preview_url) {
-            // Adicionar a imagem principal
-            adicionarImagemAoCarousel(carousel, data.image_preview_url, `Imagem do ${data.modelo}`);
+        
+     // Iterar sobre cada objeto no array para adicionar as imagens ao carrossel
+     data.forEach((item) => {
+        if (item.image_preview_url) {
+            adicionarImagemAoCarousel(
+                carousel,
+                item.image_preview_url,
+                `Imagem do ${item.modelo}`
+            );
         }
+    });
 
-        if (data.cores && Array.isArray(data.cores)) {
-            // Adicionar as imagens de cores
-            data.cores.forEach((corObj) => {
-                adicionarImagemAoCarousel(carousel, corObj.image_url, `Imagem do Tênis na cor ${corObj.cor}`);
-            });
-        }
 
         // Reconfigurar o carrossel após carregar as imagens
         initializeCarousel();
@@ -46,6 +47,7 @@ async function consumirAPI() {
     }
 }
 
+// Função para adicionar a imagem ao carrossel
 function adicionarImagemAoCarousel(carousel, src, alt) {
     const img = document.createElement('img');
     img.src = src;
@@ -90,5 +92,5 @@ function prevSlide() {
     showSlide(currentIndex - 1);
 }
 
-// Chamar a função consumirAPI ao carregar a página
-window.onload = consumirAPI;
+// Chamar a função consumirAPI após o carregamento da página
+window.addEventListener('DOMContentLoaded', consumirAPI(console.data));
