@@ -207,41 +207,59 @@ header {
 }
 
 /* Cartões de Tênis */
+/* Cartões de Tênis */
 .sneakers {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os itens na linha */
+    gap: 20px; /* Espaço entre os cartões */
     padding: 20px;
+    background-color: #f5f5f5; /* Fundo para destacar os cartões */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.sneaker {
-    background-color: white;
+/* Estilo dos cartões individuais */
+.sneaker-item {
+    background-color: white; /* Fundo branco para contraste */
+    width: 220px; /* Largura fixa */
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sneaker:hover {
-    transform: scale(1.05);
+/* Efeito de hover nos cartões */
+.sneaker-item:hover {
+    transform: scale(1.05); /* Amplia ligeiramente o cartão */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.sneaker img {
-    width: 100px;
-    height: 100px;
+/* Imagem dos tênis */
+.sneaker-item img {
+    width: 100%; /* Preenche o cartão horizontalmente */
+    max-height: 160px; /* Limita a altura */
+    object-fit: contain; /* Ajusta sem deformar */
+    border-radius: 10px;
     margin-bottom: 10px;
 }
 
-.sneaker button {
-    background-color: #000;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Título do modelo */
+.sneaker-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+    text-transform: uppercase; /* Maiúsculas para uniformidade */
+}
+
+
+
+/* Efeito de hover no botão */
+.sneaker-item button:hover {
+    background-color: #0070f3; /* Azul destacado */
+    transform: scale(1.05); /* Leve ampliação */
 }
 
 
@@ -251,4 +269,23 @@ footer {
     padding: 20px;
     background-color: #000;
     color: white;
+}
+
+/* Responsividade para telas médias */
+@media (max-width: 768px) {
+    .sneaker-item {
+        width: 180px; /* Reduz a largura dos cartões */
+    }
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 480px) {
+    .sneakers {
+        flex-direction: column; /* Empilha os cartões */
+        align-items: center; /* Centraliza os itens */
+    }
+
+    .sneaker-item {
+        width: 100%; /* Ajusta a largura ao contêiner */
+    }
 }

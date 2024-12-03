@@ -24,21 +24,21 @@ async function consumirAPI() {
             return;
         }
 
+        preencherSneakers(data);
+
         // Limpar o carrossel antes de adicionar novas imagens
         carousel.innerHTML = '';
 
-        
-     // Iterar sobre cada objeto no array para adicionar as imagens ao carrossel
-     data.forEach((item) => {
-        if (item.image_preview_url) {
-            adicionarImagemAoCarousel(
-                carousel,
-                item.image_preview_url,
-                `Imagem do ${item.modelo}`
-            );
-        }
-    });
-
+        // Iterar sobre cada objeto no array para adicionar as imagens ao carrossel
+        data.forEach((item) => {
+            if (item.image_preview_url) {
+                adicionarImagemAoCarousel(
+                    carousel,
+                    item.image_preview_url,
+                    `Imagem do ${item.modelo}`
+                );
+            }
+        });
 
         // Reconfigurar o carrossel após carregar as imagens
         initializeCarousel();
@@ -86,7 +86,6 @@ function showSlide(index) {
     carousel.style.transform = `translateX(${offset}%)`; // Move o carrossel
 }
 
-
 function nextSlide() {
     showSlide(currentIndex + 1);
 }
@@ -94,9 +93,6 @@ function nextSlide() {
 function prevSlide() {
     showSlide(currentIndex - 1);
 }
-
-// Chamar a função consumirAPI após o carregamento da página
-window.addEventListener('DOMContentLoaded', consumirAPI(console.data));
 
 // Função para mover para o slide anterior
 function moveLeft() {
@@ -115,3 +111,35 @@ const rightButton = document.querySelector('.nav-button.right');
 // Adiciona ouvintes de evento para os botões
 leftButton.addEventListener('click', moveLeft);
 rightButton.addEventListener('click', moveRight);
+
+// Chamar a função consumirAPI após o carregamento da página
+window.addEventListener('DOMContentLoaded', consumirAPI);
+
+// Função para adicionar um tênis à seção "sneakers"
+// Função para preencher a seção Sneakers
+function preencherSneakers(data) {
+    const sneakersSection = document.querySelector('.sneakers');
+
+    if (!sneakersSection) {
+        console.error('Elemento ".sneakers" não encontrado.');
+        return;
+    }
+
+    // Limpar a seção antes de preencher
+    sneakersSection.innerHTML = '';
+
+    // Adicionar cada tênis recebido
+    data.forEach((item) => {
+        if (item.image_preview_url) {
+            const sneakerDiv = document.createElement('div');
+            sneakerDiv.className = 'sneaker-item';
+
+            sneakerDiv.innerHTML = `
+                <img src="${item.image_preview_url}" alt="Imagem do ${item.modelo}" class="sneaker-img">
+                <h3>${item.modelo}</h3>
+            `;
+
+            sneakersSection.appendChild(sneakerDiv);
+        }
+    });
+}
