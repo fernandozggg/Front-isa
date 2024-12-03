@@ -33,9 +33,6 @@ header {
     transition: color 0.3s ease;
 }
 
-.navbar .logo a:hover {
-    color: #0070f3; /* Efeito de hover no logo */
-}
 
 .navbar .nav-links {
     list-style: none;
@@ -247,9 +244,6 @@ header {
     transition: background-color 0.3s;
 }
 
-.sneaker button:hover {
-    background-color: #0070f3;
-}
 
 /* Rodapé */
 footer {
