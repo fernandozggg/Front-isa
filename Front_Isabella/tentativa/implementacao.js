@@ -18,6 +18,25 @@ async function consumirAPI() {
         // Debug: Verificar os dados recebidos
         console.log("Dados recebidos da API:", data);
 
+        //Renderiza os cards
+        const cards_session = document.querySelector('.sneakers');
+
+        sneakers = ""
+
+        data.forEach((item) => {
+            sneakers += `
+                <div class="sneaker">
+                    <img src="${item.image_preview_url}">
+                    <h2>${item.modelo}</h2>
+                    <button>Comprar</button>
+                </div>
+            `;
+        });
+
+        cards_session.innerHTML = sneakers;
+
+
+
         const carousel = document.querySelector('.carousel');
         if (!carousel) {
             console.error('Elemento ".carousel" não encontrado.');
@@ -27,17 +46,16 @@ async function consumirAPI() {
         // Limpar o carrossel antes de adicionar novas imagens
         carousel.innerHTML = '';
 
-        
-     // Iterar sobre cada objeto no array para adicionar as imagens ao carrossel
-     data.forEach((item) => {
-        if (item.image_preview_url) {
-            adicionarImagemAoCarousel(
-                carousel,
-                item.image_preview_url,
-                `Imagem do ${item.modelo}`
-            );
-        }
-    });
+        // Iterar sobre cada objeto no array para adicionar as imagens ao carrossel
+        data.forEach((item) => {
+            if (item.image_preview_url) {
+                adicionarImagemAoCarousel(
+                    carousel,
+                    item.image_preview_url,
+                    `Imagem do ${item.modelo}`
+                );
+            }
+        });
 
 
         // Reconfigurar o carrossel após carregar as imagens
@@ -115,3 +133,4 @@ const rightButton = document.querySelector('.nav-button.right');
 // Adiciona ouvintes de evento para os botões
 leftButton.addEventListener('click', moveLeft);
 rightButton.addEventListener('click', moveRight);
+
