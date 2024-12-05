@@ -5,23 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adidas - Loja de Tênis</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="implementacao.js" defer></script> <!-- Agora usando apenas script.js -->
+    <script src="implementacao.js" defer></script>
 </head>
 <body>
+    <!-- Cabeçalho -->
     <header>
         <h1>Adidas - Loja de Tênis</h1>
     </header>
+
+    <!-- Barra de Navegação -->
     <nav class="navbar">
         <div class="logo">
             <a href="#">Adidas</a>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Novidades</a></li>
-            <li><a href="#">Promoções</a></li>
-            <li><a href="#">Contato</a></li>
+            <!-- Menu de navegação -->
+            <!-- Adicione os links conforme necessário -->
         </ul>
     </nav>
+
+    <!-- Carrossel -->
+    <section class="carousel-container">
+        <div class="carousel">
+            <!-- Imagens serão adicionadas dinamicamente -->
+        </div>
+        <!-- Botões de Navegação -->
+        <button class="nav-button left">&#10094;</button>
+        <button class="nav-button right">&#10095;</button>
+    </section>
+
+    <!-- Título da seção de produtos -->
+    <h1 class="titulo-produtos">Produtos</h1>
 
     <!-- Filtros -->
     <section class="filters">
@@ -41,7 +55,8 @@
             <label for="sizeFilter">Tamanho:</label>
             <select id="sizeFilter" onchange="filterSneakers()">
                 <option value="all">Todos</option>
-                <option value="36-37">36-37</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
                 <option value="38">38</option>
                 <option value="39">39</option>
                 <option value="40">40</option>
@@ -61,32 +76,16 @@
                 <option value="azul">Azul</option>
             </select>
         </div>
-    </section>
 
-    <!-- Carrossel -->
-    <section class="carousel-container">
-        <div class="carousel">
-            <!-- As imagens do carrossel serão inseridas dinamicamente aqui -->
-            <!-- <img src="http..." alt="..." style="width: jhjhj; hdwkjh"></img> -->
+        <!-- Botões -->
+        <div class="filter-buttons">
+            <button type="button" id="resetFilterButton" onclick="resetFilters()">Resetar Filtros</button>
         </div>
-         <!-- Botões de navegação -->
-    <button class="nav-button left">&#10094;</button>
-    <button class="nav-button right">&#10095;</button>
-
-    <!-- Indicadores
-    <div class="carousel-indicators">
-        <div class="active"></div>
-        <div></div>
-        <div></div>
-    </div> --> 
     </section>
-   
-<!-- das -->
 
     <!-- Seção de Tênis -->
     <section class="sneakers">
-
+        <!-- Produtos adicionados dinamicamente -->
     </section>
-
 </body>
 </html>

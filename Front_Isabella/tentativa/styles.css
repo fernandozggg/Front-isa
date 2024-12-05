@@ -164,102 +164,110 @@ header {
 /* Filtros */
 .filters {
     display: flex;
-    justify-content: center;
     gap: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .filter {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 5px;
+    align-items: flex-start;
 }
 
 .filter label {
-    font-size: 14px;
     font-weight: bold;
-    color: #333;
+    margin-bottom: 5px;
 }
 
 .filter select {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #555;
-    background-color: #fff;
-    transition: all 0.3s ease;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.filter select:hover {
-    border-color: #0070f3;
-    background-color: #f0f8ff;
+.filter-buttons {
+    margin-top: 10px;
 }
 
-.filter select:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
-    border-color: #0070f3;
+.filter-buttons button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-/* Cartões de Tênis */
+.filter-buttons button:hover {
+    background-color: #45a049;
+}
+
+
 /* Cartões de Tênis */
 .sneakers {
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
-    justify-content: center; /* Centraliza os itens na linha */
-    gap: 20px; /* Espaço entre os cartões */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os itens */
     padding: 20px;
-    background-color: #f5f5f5; /* Fundo para destacar os cartões */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo dos cartões individuais */
 .sneaker-item {
-    background-color: white; /* Fundo branco para contraste */
-    width: 220px; /* Largura fixa */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 200px; /* Ajuste conforme necessário */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efeito de hover nos cartões */
-.sneaker-item:hover {
-    transform: scale(1.05); /* Amplia ligeiramente o cartão */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Imagem dos tênis */
-.sneaker-item img {
-    width: 100%; /* Preenche o cartão horizontalmente */
-    max-height: 160px; /* Limita a altura */
-    object-fit: contain; /* Ajusta sem deformar */
-    border-radius: 10px;
+.sneaker-img-wrapper {
+    width: 100%;
+    height: 200px; /* Ajuste conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
-/* Título do modelo */
-.sneaker-item h3 {
-    font-size: 18px;
-    color: #333;
-    margin: 10px 0;
-    font-weight: bold;
-    text-transform: uppercase; /* Maiúsculas para uniformidade */
+.sneaker-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garantir que a imagem fique ajustada */
 }
 
+.sneaker-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.sneaker-info h3 {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;
+}
 
-/* Efeito de hover no botão */
-.sneaker-item button:hover {
-    background-color: #0070f3; /* Azul destacado */
-    transform: scale(1.05); /* Leve ampliação */
+.sneaker-price {
+    font-size: 16px;
+    color: #444;
+    margin: 5px 0;
+}
+
+.titulo-produtos {
+    text-align: center; /* Centraliza horizontalmente */
+    font-size: 2em; /* Ajuste o tamanho do texto */
+    font-weight: bold; /* Torna o texto mais destacado */
+    margin: 20px 0; /* Espaço acima e abaixo do texto */
+    color: #333; /* Cor do texto (opcional) */
 }
 
 

@@ -1,8 +1,8 @@
 // Função para consumir a API e preencher o carrossel
-async function consumirAPI() {
+async function consumirAPI(limit = 5) { // Limitador de quantidade
     console.log("Consumindo API...");
     try {
-        const response = await fetch('http://127.0.0.1:8000/adidas/', {
+        const response = await fetch(`http://127.0.0.1:8000/adidas/?limit=${limit}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,7 +15,6 @@ async function consumirAPI() {
 
         const data = await response.json();
 
-        // Debug: Verificar os dados recebidos
         console.log("Dados recebidos da API:", data);
 
         const carousel = document.querySelector('.carousel');
@@ -40,14 +39,13 @@ async function consumirAPI() {
             }
         });
 
-        // Reconfigurar o carrossel após carregar as imagens
-        initializeCarousel();
+        initializeCarousel(); // Reconfigurar o carrossel após carregar as imagens
     } catch (error) {
         console.error('Erro ao consumir a API:', error);
     }
 }
 
-// Função para adicionar a imagem ao carrossel
+// Função para adicionar uma imagem ao carrossel
 function adicionarImagemAoCarousel(carousel, src, alt) {
     const img = document.createElement('img');
     img.src = src;
@@ -67,8 +65,7 @@ function initializeCarousel() {
     currentIndex = 0; // Resetar o índice inicial
     showSlide(currentIndex);
 
-    // Adicionar controle automático
-    setInterval(nextSlide, 3000);
+    setInterval(nextSlide, 3000); // Controle automático
 }
 
 function showSlide(index) {
@@ -76,12 +73,8 @@ function showSlide(index) {
     const slides = carousel.querySelectorAll('img');
     if (slides.length === 0) return;
 
-    // Atualiza o índice para garantir que o carrossel fique dentro do intervalo de imagens
-    if (index >= slides.length) currentIndex = 0;
-    else if (index < 0) currentIndex = slides.length - 1;
-    else currentIndex = index;
+    currentIndex = (index + slides.length) % slides.length; // Garante o loop
 
-    // Calcula o deslocamento baseado no índice
     const offset = -currentIndex * 100;
     carousel.style.transform = `translateX(${offset}%)`; // Move o carrossel
 }
@@ -90,56 +83,80 @@ function nextSlide() {
     showSlide(currentIndex + 1);
 }
 
-function prevSlide() {
-    showSlide(currentIndex - 1);
-}
-
-// Função para mover para o slide anterior
-function moveLeft() {
-    showSlide(currentIndex - 1); // Chama a função showSlide com índice decrementado
-}
-
-// Função para mover para o slide seguinte
-function moveRight() {
-    showSlide(currentIndex + 1); // Chama a função showSlide com índice incrementado
-}
-
-// Seleciona os botões de navegação
-const leftButton = document.querySelector('.nav-button.left');
-const rightButton = document.querySelector('.nav-button.right');
-
-// Adiciona ouvintes de evento para os botões
-leftButton.addEventListener('click', moveLeft);
-rightButton.addEventListener('click', moveRight);
-
-// Chamar a função consumirAPI após o carregamento da página
-window.addEventListener('DOMContentLoaded', consumirAPI);
-
-// Função para adicionar um tênis à seção "sneakers"
-// Função para preencher a seção Sneakers
+// Função para preencher os sneakers na página
 function preencherSneakers(data) {
     const sneakersSection = document.querySelector('.sneakers');
-
     if (!sneakersSection) {
         console.error('Elemento ".sneakers" não encontrado.');
         return;
     }
 
-    // Limpar a seção antes de preencher
-    sneakersSection.innerHTML = '';
+    sneakersSection.innerHTML = ''; // Limpar a seção
 
-    // Adicionar cada tênis recebido
+    // Adicionar cada tênis
     data.forEach((item) => {
         if (item.image_preview_url) {
             const sneakerDiv = document.createElement('div');
             sneakerDiv.className = 'sneaker-item';
 
             sneakerDiv.innerHTML = `
-                <img src="${item.image_preview_url}" alt="Imagem do ${item.modelo}" class="sneaker-img">
-                <h3>${item.modelo}</h3>
+                <div class="sneaker-img-wrapper">
+                    <img src="${item.image_preview_url}" alt="Imagem do ${item.modelo}" class="sneaker-img">
+                </div>
+                <div class="sneaker-info">
+                    <h3>${item.modelo}</h3>
+                    <p class="sneaker-price">Preço: R$ ${parseFloat(item.preco).toFixed(2)}</p>
+                </div>
             `;
 
             sneakersSection.appendChild(sneakerDiv);
         }
     });
 }
+
+// Função para aplicar filtros
+async function filterSneakers() {
+    console.log("Filtrando sneakers...");
+    try {
+        const modelFilter = document.getElementById("modelFilter").value;
+        const sizeFilter = document.getElementById("sizeFilter").value;
+        const colorFilter = document.getElementById("colorFilter").value;
+
+        let url = 'http://127.0.0.1:8000/adidas/?';
+
+        if (modelFilter !== 'all') url += `modelo=${modelFilter}&`;
+        if (sizeFilter !== 'all') url += `tamanho=${sizeFilter}&`;
+        if (colorFilter !== 'all') url += `cor=${colorFilter}&`;
+
+        url = url.slice(0, -1); // Remove o "&" extra
+
+        console.log("URL de requisição:", url);
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) throw new Error(`Erro HTTP! status: ${response.status}`);
+
+        const filteredData = await response.json();
+
+        preencherSneakers(filteredData); // Atualiza os sneakers
+    } catch (error) {
+        console.error('Erro ao aplicar filtros:', error);
+    }
+}
+
+// Função para resetar os filtros
+function resetFilters() {
+    document.getElementById("modelFilter").value = 'all';
+    document.getElementById("sizeFilter").value = 'all';
+    document.getElementById("colorFilter").value = 'all';
+
+    consumirAPI(5); // Recarrega os 5 primeiros tênis
+}
+
+// Chamar a função consumirAPI após o carregamento da página
+window.addEventListener('DOMContentLoaded', () => consumirAPI(5));
